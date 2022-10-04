@@ -1,7 +1,6 @@
 const express = require("express");
 const app = express();
-const dotenv = require("dotenv");
-dotenv.config();
+const dotenv = require("dotenv").config;
 const cors = require("cors");
 const noteRouter = require("./routes/noteRoutes");
 const userRouter = require("./routes/userRoutes")
@@ -15,8 +14,8 @@ app.get("/ ", (req,res)=>{
     res.send("Note API From Ankur Tripathi");
 })
 const PORT = process.env.PORT || 5000;
-
-mongoose.connect(DB_URL).then(()=>{
+const MONGO_URL = process.env.MONGO_URL;
+mongoose.connect(MONGO_URL).then(()=>{
     app.listen(PORT, ()=>{
         console.log("Server started port no." +PORT);
 });
