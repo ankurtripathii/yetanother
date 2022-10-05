@@ -2,7 +2,7 @@
  const userModel = require("../models/user");
  const bcrypt = require("bcrypt");
  const jwt = require("jsonwebtoken");
- const SECRET_KEY = "NOTE_API";
+ const SECRET_KEY = process.env.NOTE_API;
   
  const signUp = async (req,res) => {
 
