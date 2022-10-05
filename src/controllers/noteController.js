@@ -3,6 +3,7 @@ const noteModel = require ("../models/note");
 
 
 const createNote = async (req,res) => {
+
 const {title, description} = req.body;
 const newNote = new noteModel({title: title, description: description, userId: req.userId});
 try { 
@@ -15,12 +16,12 @@ try {
 
 }
 const updateNote = async (req,res) => {
-    const id = req.param.id;
+    const id = req.params.id;
     const {title, description} = req.body;
     const newNote = {
         title: title,
-        description : description,
-        userId : req.userId
+        description:description,
+         userId : req.userId
     }
     try {
         await noteModel.findByIdAndUpdate(id, newNote, {new : true});
@@ -32,7 +33,7 @@ const updateNote = async (req,res) => {
     
 }
 const deleteNote = async (req,res) => {
-    const id = req.param.id;
+    const id = req.params.id;
     try {
         const note = await noteModel.findByIdAndRemove(id);
         res.status(202).json(note);
